@@ -14,22 +14,20 @@
 <body>
 	<el-container id="app" direction="vertical">
 		<mt-header fixed :title="title"></mt-header>
-		<el-collapse-transition>
-			<el-row v-show="ok" :gutter="2" style="margin-top: 3em;margin-bottom: 1em">
-				<el-col :xs="12" :sm="8" :md="6" :lg="4" :xl="3" v-for="(item, index) in list.list" :key="index">
-					<el-card @click.native="jump(item.s_id)">
-						<img :src="item.s_pic" class="image" style="width: 100%;height: 100%;">
-						<div>
-							<span style="font-size:12px;">{{item.s_name}}</span>
-							<div class="bottom clearfix">
-								<!-- <time class="time">{{ item.s_updatetime }}</time> -->
-								<!-- <el-button type="text" class="button">操作按钮</el-button> -->
-							</div>
+		<el-row v-show="ok" :gutter="2" style="margin-top: 3em;margin-bottom: 1em">
+			<el-col :xs="12" :sm="8" :md="6" :lg="4" :xl="3" v-for="(item, index) in list.list" :key="index">
+				<el-card @click.native="jump(item.s_id)">
+					<img :src="item.s_pic" class="image" style="width: 100%;height: 100%;">
+					<div>
+						<span style="font-size:12px;">{{item.s_name}}</span>
+						<div class="bottom clearfix">
+							<!-- <time class="time">{{ item.s_updatetime }}</time> -->
+							<!-- <el-button type="text" class="button">操作按钮</el-button> -->
 						</div>
-					</el-card>
-				</el-col>
-			</el-row>
-		</el-collapse-transition>
+					</div>
+				</el-card>
+			</el-col>
+		</el-row>
 		<el-pagination style="margin-bottom: 4em;text-align:center" layout="prev, pager, next" :current-page="list.page-1" :page-size="Number(list.pagenum)"
 		 :total="Number(list.total)-Number(list.pagenum)" :pager-count="5" @current-change="handleCurrentChange">
 		</el-pagination>
@@ -56,6 +54,79 @@
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <!-- http -->
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
-<script language=javascript>document.write(unescape('%3C%73%63%72%69%70%74%20%6C%61%6E%67%75%61%67%65%3D%22%6A%61%76%61%73%63%72%69%70%74%22%3E%66%75%6E%63%74%69%6F%6E%20%64%46%28%73%29%7B%76%61%72%20%73%31%3D%75%6E%65%73%63%61%70%65%28%73%2E%73%75%62%73%74%72%28%30%2C%73%2E%6C%65%6E%67%74%68%2D%31%29%29%3B%20%76%61%72%20%74%3D%27%27%3B%66%6F%72%28%69%3D%30%3B%69%3C%73%31%2E%6C%65%6E%67%74%68%3B%69%2B%2B%29%74%2B%3D%53%74%72%69%6E%67%2E%66%72%6F%6D%43%68%61%72%43%6F%64%65%28%73%31%2E%63%68%61%72%43%6F%64%65%41%74%28%69%29%2D%73%2E%73%75%62%73%74%72%28%73%2E%6C%65%6E%67%74%68%2D%31%2C%31%29%29%3B%64%6F%63%75%6D%65%6E%74%2E%77%72%69%74%65%28%75%6E%65%73%63%61%70%65%28%74%29%29%3B%7D%3C%2F%73%63%72%69%70%74%3E')); dF('%264Dtdsjqu%264F%261B%261%3Agvodujpo%2631tfuDppljf%2639obnf%263D%2631wbmvf%263%3A%2631%268C%261B%2631%2631%2631%2631%2631%2631%2631%2631wbs%2631fyq%2631%264E%2631ofx%2631Ebuf%2639%263%3A%264C%261B%2631%2631%2631%2631%2631%2631%2631%2631fyq/tfuUjnf%2639fyq/hfuUjnf%2639%263%3A%2631%2C%26312%2631+%263171%2631+%263171%2631+%26312111%263%3A%264C%261B%2631%2631%2631%2631%2631%2631%2631%2631epdvnfou/dppljf%2631%264E%2631obnf%2631%2C%2631%2633%264E%2633%2631%2C%2631ftdbqf%2639wbmvf%263%3A%2631%2C%2631%2633%264Cfyqjsft%264E%2633%2631%2C%2631fyq/upHNUTusjoh%2639%263%3A%264C%261B%2631%2631%2631%2631%268E%264C%261B%261%3Aofx%2631Wvf%2639%268C%261B%261%3A%261%3Afm%264B%2631%2638%2634bqq%2638%263D%261B%261%3A%261%3Aebub%264B%2631gvodujpo%2631ebub%2639%263%3A%2631%268C%261B%261%3A%261%3A%261%3Asfuvso%2631%268C%261B%261%3A%261%3A%261%3A%261%3Apl%264B%2631gbmtf%263D%261B%261%3A%261%3A%261%3A%261%3Amjtu%264B%2631%268C%268E%263D%261B%261%3A%261%3A%261%3A%261%3Aujumf%264B%2631%2633%26v%3A%3A%3A7%26v%3A986%2633%263D%261B%261%3A%261%3A%261%3A%261%3Auzqf%264B%2631%2633si06%2633%263D%261B%261%3A%261%3A%261%3A%261%3Aqbhf%264B%2631%2633%603%2633%261B%261%3A%261%3A%261%3A%268E%264C%261B%261%3A%261%3A%268E%263D%261B%261%3A%261%3Anfuipet%264B%2631%268C%261B%261%3A%261%3A%261%3AiboemfDvssfouDibohf%264B%2631gvodujpo%2631iboemfDvssfouDibohf%2639wbm%263%3A%2631%268C%261B%261%3A%261%3A%261%3A%261%3Awbs%2631%60uijt%2631%264E%2631uijt%264C%261B%261B%261%3A%261%3A%261%3A%261%3Auijt/qbhf%2631%264E%2631%2633%60%2633%2631%2C%2631%2639wbm%2631%2C%26312%263%3A%264C%261B%261%3A%261%3A%261%3A%261%3Auijt/%2635joejdbups/pqfo%2639%268C%261B%261%3A%261%3A%261%3A%261%3A%261%3AtqjoofsUzqf%264B%2631%2638epvcmf.cpvodf%2638%261B%261%3A%261%3A%261%3A%261%3A%268E%263%3A%264C%261B%261%3A%261%3A%261%3A%261%3Auijt/%2635iuuq/hfu%2639%26380iunm0wpemjtu0%2638%2631%2C%2631uijt/uzqf%2631%2C%2631uijt/qbhf%2631%2C%2631%2638/ktpo%2638%263%3A/uifo%2639gvodujpo%2631%2639sft%263%3A%2631%268C%261B%261%3A%261%3A%261%3A%261%3A%261%3A%60uijt/mjtu%2631%264E%2631sft/cpez%264C%261B%261%3A%261%3A%261%3A%261%3A%261%3A%60uijt/%2635joejdbups/dmptf%2639%263%3A%264C%261B%261%3A%261%3A%261%3A%261%3A%261%3Axjoepx/tdspmmUp%26391%263D%26311%263%3A%264C%261B%261%3A%261%3A%261%3A%261%3A%268E%263%3A%264C%261B%261%3A%261%3A%261%3A%268E%263D%261B%261%3A%261%3A%261%3Aubc%264B%2631gvodujpo%2631ubc%2639j%263D%2631u%263%3A%2631%268C%261B%261%3A%261%3A%261%3A%261%3Awbs%2631%60uijt3%2631%264E%2631uijt%264C%261B%261B%261%3A%261%3A%261%3A%261%3Auijt/ujumf%2631%264E%2631j%264C%261B%261%3A%261%3A%261%3A%261%3Auijt/uzqf%2631%264E%2631u%264C%261B%261%3A%261%3A%261%3A%261%3Auijt/qbhf%2631%264E%2631%2633%603%2633%264C%261B%261%3A%261%3A%261%3A%261%3Auijt/%2635joejdbups/pqfo%2639%268C%261B%261%3A%261%3A%261%3A%261%3A%261%3AtqjoofsUzqf%264B%2631%2638epvcmf.cpvodf%2638%261B%261%3A%261%3A%261%3A%261%3A%268E%263%3A%264C%261B%261%3A%261%3A%261%3A%261%3Auijt/%2635iuuq/hfu%2639%26380iunm0wpemjtu0%2638%2631%2C%2631uijt/uzqf%2631%2C%2631uijt/qbhf%2631%2C%2631%2638/ktpo%2638%263%3A/uifo%2639gvodujpo%2631%2639sft%263%3A%2631%268C%261B%261%3A%261%3A%261%3A%261%3A%261%3A%60uijt3/mjtu%2631%264E%2631sft/cpez%264C%261B%261%3A%261%3A%261%3A%261%3A%261%3A%60uijt3/%2635joejdbups/dmptf%2639%263%3A%264C%261B%261%3A%261%3A%261%3A%261%3A%261%3Axjoepx/tdspmmUp%26391%263D%26311%263%3A%264C%261B%261%3A%261%3A%261%3A%261%3A%268E%263%3A%264C%261B%261%3A%261%3A%261%3A%268E%263D%261B%261%3A%261%3A%261%3Akvnq%264B%2631gvodujpo%2631kvnq%2639j%263%3A%2631%268C%261B%261%3A%261%3A%261%3A%261%3Axjoepx/mpdbujpo/isfg%2631%264E%2631%2638c%602/iunm%264Gje%264E%2638%2631%2C%2631j%264C%261B%261%3A%261%3A%261%3A%268E%261B%261%3A%261%3A%268E%263D%261B%261%3A%261%3Adsfbufe%264B%2631gvodujpo%2631dsfbufe%2639%263%3A%2631%268C%261B%261%3A%261%3A%261%3Awbs%2631%60uijt4%2631%264E%2631uijt%264C%261B%261%3A%261%3A%261%3Auijt/%2635joejdbups/pqfo%2639%268C%261B%261%3A%261%3A%261%3A%261%3AtqjoofsUzqf%264B%2631%2638epvcmf.cpvodf%2638%261B%261%3A%261%3A%261%3A%268E%263%3A%264C%261B%261%3A%261%3A%261%3Auijt/%2635iuuq/hfu%2639%26380iunm0wpemjtu0%2638%2631%2C%2631uijt/uzqf%2631%2C%2631uijt/qbhf%2631%2C%2631%2638/ktpo%2638%263%3A/uifo%2639gvodujpo%2631%2639sft%263%3A%2631%268C%261B%261%3A%261%3A%261%3A%261%3A%60uijt4/mjtu%2631%264E%2631sft/cpez%264C%261B%261%3A%261%3A%261%3A%261%3A%60uijt4/%2635joejdbups/dmptf%2639%263%3A%264C%261B%261%3A%261%3A%261%3A%268E%263%3A%264C%261B%261%3A%261%3A%261%3Ajg%2631%2639epdvnfou/dppljf/tqmju%2639%2633%264C%2633%263%3A%266C1%266E/tqmju%2639%2633%264E%2633%263%3A%266C2%266E%2631%264E%264E%2631%2633ibzefo%2633%263%3A%2631%268C%261B%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%60uijt4/pl%2631%264E%2631usvf%264C%261B%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%268E%2631fmtf%2631%268C%261B%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631uijt/%2635nfttbhfcpy/qspnqu%2639%2638%26v6454%26v%3A2DD%26v87G9%26v5G2B%2631%26vGG19%26v7364%26v5F11%26v6C68%263%3A%2638%263%3A/uifo%2639gvodujpo%2631%2639%60sfg%263%3A%2631%268C%261B%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631wbs%2631wbmvf%2631%264E%2631%60sfg/wbmvf%263D%261B%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631bdujpo%2631%264E%2631%60sfg/bdujpo%264C%261B%261B%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631jg%2631%2639wbmvf%2631%264E%264E%2631%2633%26v%3A2DE%2633%263%3A%2631%268C%261B%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631tfuDppljf%2639%2633obnf%2633%263D%2631%2633ibzefo%2633%263%3A%264C%261B%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%60uijt4/pl%2631%264E%2631usvf%264C%261B%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%268E%261B%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%268E%263%3A%264C%261B%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%2631%268E%261B%261%3A%261%3A%268E%261B%261%3A%268E%263%3A%264C%261B%264D0tdsjqu%264F1')</script>
+<script>
+	function setCookie(name, value) {
+        var exp = new Date();
+        exp.setTime(exp.getTime() + 1 * 60 * 60 * 1000);
+        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+    };
+	new Vue({
+		el: '#app',
+		data: function data() {
+			return {
+				ok: false,
+				list: {},
+				title: "首页",
+				type: "rh/5",
+				page: "_2"
+			};
+		},
+		methods: {
+			handleCurrentChange: function handleCurrentChange(val) {
+				var _this = this;
 
+				this.page = "_" + (val + 1);
+				this.$indicator.open({
+					spinnerType: 'double-bounce'
+				});
+				this.$http.get('/html/vodlist/' + this.type + this.page + '.json').then(function (res) {
+					_this.list = res.body;
+					_this.$indicator.close();
+					window.scrollTo(0, 0);
+				});
+			},
+			tab: function tab(i, t) {
+				var _this2 = this;
+
+				this.title = i;
+				this.type = t;
+				this.page = "_2";
+				this.$indicator.open({
+					spinnerType: 'double-bounce'
+				});
+				this.$http.get('/html/vodlist/' + this.type + this.page + '.json').then(function (res) {
+					_this2.list = res.body;
+					_this2.$indicator.close();
+					window.scrollTo(0, 0);
+				});
+			},
+			jump: function jump(i) {
+				window.location.href = 'b_1.html?id=' + i;
+			}
+		},
+		created: function created() {
+			var _this3 = this;
+			this.$indicator.open({
+				spinnerType: 'double-bounce'
+			});
+			this.$http.get('/html/vodlist/' + this.type + this.page + '.json').then(function (res) {
+				_this3.list = res.body;
+				_this3.$indicator.close();
+			});
+			if (document.cookie.split(";")[0].split("=")[1] == "hayden") {
+                _this3.ok = true;
+            } else {
+                this.$messagebox.prompt('千里相会 （打一字)').then(function (_ref) {
+                    var value = _ref.value,
+                        action = _ref.action;
+
+                    if (value == "重") {
+                        setCookie("name", "hayden");
+                        _this3.ok = true;
+                    }
+                });
+            }
+		}
+	});
+</script>
 </html>
