@@ -78,7 +78,7 @@
         methods: {},
         created: function created() {
             var _this = this;
-            this.$http.get('/html/vodplay/' + getQueryString("id") + '.json').then(function (res) {
+            this.$http.get('http://139.199.39.76:8099/p?p=/html/vodplay/' + getQueryString("id") + '.json').then(function (res) {
                 var vurl = JSON.parse(res.body.url);
                 _this.playerOptions.sources[0].src = vurl[1][0];
                 _this.playerOptions.poster = res.body.s_pic;
