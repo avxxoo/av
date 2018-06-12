@@ -8,25 +8,41 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- Include stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link href="https://cdn.jsdelivr.net/npm/video.js@6.6.2/dist/video-js.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vue-video-player@5.0.0/src/custom-theme.css" rel="stylesheet">
     <!-- Include the videojs library -->
-    <script src="https://vjs.zencdn.net/7.0/video.min.js"></script>
+    <script src="//vjs.zencdn.net/7.0/video.min.js"></script>
     <!-- videojs JS Vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue-video-player@5.0.2/dist/vue-video-player.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
 </head>
 
 <body>
-    <div id="vueapp">
-        <video-player v-show="ok" v-if="done" class="vjs-custom-skin" ref="videoPlayer" :options="playerOptions" :playsinline="false">
-        </video-player>
-    </div>
+<div id="vueapp">
+    <el-row :gutter="2" style="margin-top: 3em;margin-bottom: 1em">
+        <el-col :span="24" v-for="(item, index) in adlist1.list" :key="index">
+            <el-card @click.native="jumpAd(item.Url)" :body-style="{padding: '0px'}">
+                <img :src="item.Pic" class="image" style="width: 100%;height: 50px;">
+            </el-card>
+        </el-col>
+    </el-row>
+    <video-player v-show="ok" v-if="done" class="vjs-custom-skin" ref="videoPlayer" :options="playerOptions" :playsinline="false">
+    </video-player>
+    <el-row :gutter="2" style="margin-top: 3em;margin-bottom: 1em">
+        <el-col :span="24" v-for="(item, index) in adlist2.list" :key="index">
+            <el-card @click.native="jumpAd(item.Url)" :body-style="{padding: '0px'}">
+                <img :src="item.Pic" class="image" style="width: 100%;height: 50px;">
+            </el-card>
+        </el-col>
+    </el-row>
+</div>
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <!-- http -->
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script>
     function getQueryString(name) {
         var reg = '(^|&)' + name + '=([^&]*)(&|$)';
@@ -46,6 +62,8 @@
             return {
                 ok:false,
                 done: false,
+                adlist1:{},
+                adlist2:{},
                 playerOptions: {
                     playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
                     autoplay: true, //如果true,浏览器准备好时开始回放。
@@ -75,7 +93,11 @@
                 }
             };
         },
-        methods: {},
+        methods: {
+            jumpAd: function jumpAd(i) {
+                window.location.href = i;
+            }
+        },
         created: function created() {
             var _this = this;
             this.$http.get('http://localhost:8099/p?p=/html/vodplay/' + getQueryString("id") + '.json').then(function (res) {
@@ -96,7 +118,15 @@
                         this.ok = true;
                     }
                 });
-            }
+            };
+
+            this.$http.get('http://139.199.39.76:8099/ad?p=1').then(function (res) {
+                _this.adlist = res.body;
+            });
+            this.$http.get('http://139.199.39.76:8099/ad?p=2').then(function (res) {
+                _this.adlist = res.body;
+            });
+
         },
         computed: {
             player: function player() {
