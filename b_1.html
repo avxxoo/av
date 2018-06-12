@@ -21,7 +21,7 @@
 <body>
 <div id="vueapp">
     <el-container direction="vertical">
-        <el-row :gutter="2" style="margin-bottom: 1em">
+        <el-row :gutter="2">
             <el-col :span="24" v-for="(item, index) in adlist1.list" :key="index">
                 <el-card @click.native="jumpAd(item.Url)" :body-style="{padding: '0px'}">
                     <img :src="item.Pic" class="image" style="width: 100%;height: 50px;">
