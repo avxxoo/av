@@ -28,7 +28,7 @@
                 </el-card>
             </el-col>
         </el-row>
-        <el-row :gutter="2" v-show="ok" v-if="done">
+        <el-row :gutter="2" v-show="ok" v-if="done" style="margin-top: 1em;margin-bottom: 1em">
             <el-col :span="24">
                 <video-player class="vjs-custom-skin" ref="videoPlayer" :options="playerOptions" :playsinline="false"></video-player>
             </el-col>
