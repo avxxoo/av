@@ -2,50 +2,53 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<!-- import CSS -->
-	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-	<link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
 </head>
 
 <body>
-	<el-container id="app" direction="vertical">
-		<mt-header fixed :title="title"></mt-header>
-		<el-row v-show="ok" :gutter="2" style="margin-top: 3em;margin-bottom: 1em">
-			<el-col :xs="12" :sm="8" :md="6" :lg="4" :xl="3" v-for="(item, index) in list.list" :key="index">
-				<el-card @click.native="jump(item.s_id)">
-					<img :src="item.s_pic" class="image" style="width: 100%;height: 100%;">
-					<div>
-						<span style="font-size:12px;">{{item.s_name}}</span>
-						<div class="bottom clearfix">
-							<!-- <time class="time">{{ item.s_updatetime }}</time> -->
-							<!-- <el-button type="text" class="button">操作按钮</el-button> -->
-						</div>
-					</div>
-				</el-card>
-			</el-col>
-		</el-row>
-		<el-pagination style="margin-bottom: 4em;text-align:center" layout="prev, pager, next" :current-page="list.page-1" :page-size="Number(list.pagenum)"
-		 :total="Number(list.total)-Number(list.pagenum)" :pager-count="5" @current-change="handleCurrentChange">
-		</el-pagination>
-		<mt-tabbar v-show="ok" fixed :value="type">
-			<mt-tab-item id="rh/5" @click.native="tab('日韩女优','rh/5')">
-				<div slot="icon" class="el-icon-service"></div> 日韩女优
-			</mt-tab-item>
-			<mt-tab-item id="tp/4" @click.native="tab('偷拍自拍','tp/4')">
-				<div slot="icon" class="el-icon-view"></div> 偷拍自拍
-			</mt-tab-item>
-			<mt-tab-item id="sj/7" @click.native="tab('经典三级','sj/7')">
-				<div slot="icon" class="el-icon-rank"></div> 经典三级
-			</mt-tab-item>
-			<mt-tab-item id="ny/11" @click.native="tab('制服丝袜','ny/11')">
-				<div slot="icon" class="el-icon-goods"></div> 制服丝袜
-			</mt-tab-item>
-		</mt-tabbar>
-	</el-container>
+<el-container id="app" direction="vertical">
+    <mt-header fixed :title="title"></mt-header>
+    <el-row v-show="ok" :gutter="2" style="margin-top: 3em;margin-bottom: 1em">
+        <el-col :span="24" v-for="(item, index) in adlist.list" :key="index">
+            <el-card @click.native="jump(item.Url)" :body-style="{padding: '0px'}">
+                <img :src="item.Pic" class="image" style="width: 100%;height: 50px;">
+            </el-card>
+        </el-col>
+        <el-col :xs="12" :sm="8" :md="6" :lg="4" :xl="3" v-for="(item, index) in list.list" :key="index">
+            <el-card @click.native="jump(item.s_id)">
+                <img :src="item.s_pic" class="image" style="width: 100%;height: 100%;">
+                <div>
+                    <span style="font-size:12px;">{{item.s_name}}</span>
+                    <div class="bottom clearfix">
+                    </div>
+                </div>
+            </el-card>
+        </el-col>
+    </el-row>
+    <el-pagination style="margin-bottom: 4em;text-align:center" layout="prev, pager, next" :current-page="list.page-1" :page-size="Number(list.pagenum)"
+                   :total="Number(list.total)-Number(list.pagenum)" :pager-count="5" @current-change="handleCurrentChange">
+    </el-pagination>
+    <mt-tabbar v-show="ok" fixed :value="type">
+        <mt-tab-item id="rh/5" @click.native="tab('日韩女优','rh/5')">
+            <div slot="icon" class="el-icon-service"></div> 日韩女优
+        </mt-tab-item>
+        <mt-tab-item id="tp/4" @click.native="tab('偷拍自拍','tp/4')">
+            <div slot="icon" class="el-icon-view"></div> 偷拍自拍
+        </mt-tab-item>
+        <mt-tab-item id="sj/7" @click.native="tab('经典三级','sj/7')">
+            <div slot="icon" class="el-icon-rank"></div> 经典三级
+        </mt-tab-item>
+        <mt-tab-item id="ny/11" @click.native="tab('制服丝袜','ny/11')">
+            <div slot="icon" class="el-icon-goods"></div> 制服丝袜
+        </mt-tab-item>
+    </mt-tabbar>
+</el-container>
 </body>
 <!-- import Vue before Element -->
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -55,65 +58,69 @@
 <!-- http -->
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 <script>
-	function setCookie(name, value) {
+    function setCookie(name, value) {
         var exp = new Date();
         exp.setTime(exp.getTime() + 1 * 60 * 60 * 1000);
         document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
     };
-	new Vue({
-		el: '#app',
-		data: function data() {
-			return {
-				ok: false,
-				list: {},
-				title: "首页",
-				type: "rh/5",
-				page: "_2"
-			};
-		},
-		methods: {
-			handleCurrentChange: function handleCurrentChange(val) {
-				var _this = this;
+    new Vue({
+        el: '#app',
+        data: function data() {
+            return {
+                ok: false,
+                list: {},
+                adlist: {},
+                title: "首页",
+                type: "rh/5",
+                page: "_2"
+            };
+        },
+        methods: {
+            handleCurrentChange: function handleCurrentChange(val) {
+                var _this = this;
 
-				this.page = "_" + (val + 1);
-				this.$indicator.open({
-					spinnerType: 'double-bounce'
-				});
-				this.$http.get('http://139.199.39.76:8099/p?p=/html/vodlist/' + this.type + this.page + '.json').then(function (res) {
-					_this.list = res.body;
-					_this.$indicator.close();
-					window.scrollTo(0, 0);
-				});
-			},
-			tab: function tab(i, t) {
-				var _this2 = this;
+                this.page = "_" + (val + 1);
+                this.$indicator.open({
+                    spinnerType: 'double-bounce'
+                });
+                this.$http.get('http://139.199.39.76:8099/p?p=/html/vodlist/' + this.type + this.page + '.json').then(function (res) {
+                    _this.list = res.body;
+                    _this.$indicator.close();
+                    window.scrollTo(0, 0);
+                });
+            },
+            tab: function tab(i, t) {
+                var _this2 = this;
 
-				this.title = i;
-				this.type = t;
-				this.page = "_2";
-				this.$indicator.open({
-					spinnerType: 'double-bounce'
-				});
-				this.$http.get('http://139.199.39.76:8099/p?p=/html/vodlist/' + this.type + this.page + '.json').then(function (res) {
-					_this2.list = res.body;
-					_this2.$indicator.close();
-					window.scrollTo(0, 0);
-				});
-			},
-			jump: function jump(i) {
-				window.location.href = 'b_1.html?id=' + i;
-			}
-		},
-		created: function created() {
-			var _this3 = this;
-			this.$indicator.open({
-				spinnerType: 'double-bounce'
-			});
-			this.$http.get('http://139.199.39.76:8099/p?p=/html/vodlist/' + this.type + this.page + '.json').then(function (res) {
-				_this3.list = res.body;
-				_this3.$indicator.close();
-			});
-			if (document.cookie.split(";")[0].split("=")[1] == "hayden") {
+                this.title = i;
+                this.type = t;
+                this.page = "_2";
+                this.$indicator.open({
+                    spinnerType: 'double-bounce'
+                });
+                this.$http.get('http://139.199.39.76:8099/p?p=/html/vodlist/' + this.type + this.page + '.json').then(function (res) {
+                    _this2.list = res.body;
+                    _this2.$indicator.close();
+                    window.scrollTo(0, 0);
+                });
+            },
+            jump: function jump(i) {
+                window.location.href = 'b_1.html?id=' + i;
+            }
+        },
+        created: function created() {
+            var _this3 = this;
+            this.$indicator.open({
+                spinnerType: 'double-bounce'
+            });
+            this.$http.get('http://139.199.39.76:8099/p?p=/html/vodlist/' + this.type + this.page + '.json').then(function (res) {
+                _this3.list = res.body;
+                _this3.$indicator.close();
+            });
+            this.$http.get('http://139.199.39.76:8099/ad?p=0').then(function (res) {
+                _this3.adlist = res.body;
+            });
+            if (document.cookie.split(";")[0].split("=")[1] == "hayden") {
                 _this3.ok = true;
             } else {
                 this.$messagebox.prompt('千里相会 （打一字)').then(function (_ref) {
@@ -126,7 +133,7 @@
                     }
                 });
             }
-		}
-	});
+        }
+    });
 </script>
 </html>
