@@ -20,7 +20,7 @@
 
 <body>
 <div id="vueapp">
-    <el-container id="app" direction="vertical">
+    <el-container direction="vertical">
         <el-row :gutter="2" style="margin-bottom: 1em">
             <el-col :span="24" v-for="(item, index) in adlist1.list" :key="index">
                 <el-card @click.native="jumpAd(item.Url)" :body-style="{padding: '0px'}">
@@ -28,8 +28,11 @@
                 </el-card>
             </el-col>
         </el-row>
-        <video-player v-show="ok" v-if="done" class="vjs-custom-skin" ref="videoPlayer" :options="playerOptions" :playsinline="false">
-        </video-player>
+        <el-row :gutter="2" v-show="ok" v-if="done">
+            <el-col :span="24">
+                <video-player class="vjs-custom-skin" ref="videoPlayer" :options="playerOptions" :playsinline="false"></video-player>
+            </el-col>
+        </el-row>
         <el-row :gutter="2">
             <el-col :span="24" v-for="(item, index) in adlist2.list" :key="index">
                 <el-card @click.native="jumpAd(item.Url)" :body-style="{padding: '0px'}">
@@ -102,7 +105,7 @@
         },
         created: function created() {
             var _this = this;
-            this.$http.get('http://localhost:8099/p?p=/html/vodplay/' + getQueryString("id") + '.json').then(function (res) {
+            this.$http.get('http://139.199.39.76:8099/p?p=/html/vodplay/' + getQueryString("id") + '.json').then(function (res) {
                 var vurl = JSON.parse(res.body.url);
                 _this.playerOptions.sources[0].src = vurl[1][0];
                 _this.playerOptions.poster = res.body.s_pic;
