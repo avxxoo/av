@@ -1,13 +1,14 @@
 CACHE MANIFEST
 
 CACHE:
-  css/mint-ui.css
-  css/video-js.css
-  css/vue-video-player.css
-  js/element-ui.js
-  js/mint-ui.js
-  js/video.min.js
-  js/vue-resource.js
-  js/vue-video-player.js
-  js/vue.js
+  https://unpkg.com/element-ui/lib/theme-chalk/index.css
+  https://unpkg.com/mint-ui/lib/style.css
+  https://unpkg.com/vue/dist/vue.js
+  https://unpkg.com/element-ui/lib/index.js
+  https://unpkg.com/mint-ui/lib/index.js
+  https://cdn.jsdelivr.net/npm/vue-resource@1.5.1
+  https://cdn.jsdelivr.net/npm/video.js@6.6.2/dist/video-js.css
+  https://cdn.jsdelivr.net/npm/vue-video-player@5.0.0/src/custom-theme.css
+  https://vjs.zencdn.net/7.0/video.min.js
+  https://cdn.jsdelivr.net/npm/vue-video-player@5.0.2/dist/vue-video-player.min.js
   
