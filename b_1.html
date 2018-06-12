@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="zpp.appcache">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -8,13 +8,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- Include stylesheet -->
-    <link href="css/video-js.css" rel="stylesheet">
-    <link href="css/vue-video-player.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/video.js@6.6.2/dist/video-js.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vue-video-player@5.0.0/src/custom-theme.css" rel="stylesheet">
     <!-- Include the videojs library -->
-    <script src="js/video.min.js"></script>
+    <script src="https://vjs.zencdn.net/7.0/video.min.js"></script>
     <!-- videojs JS Vue -->
-    <script src="js/vue-video-player.js"></script>
-    <link rel="stylesheet" href="css/mint-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue-video-player@5.0.2/dist/vue-video-player.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
 </head>
 
 <body>
@@ -23,10 +23,10 @@
         </video-player>
     </div>
 </body>
-<script src="js/vue.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
 <!-- http -->
-<script src="js/vue-resource.js"></script>
-<script src="js/mint-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script>
     function getQueryString(name) {
         var reg = '(^|&)' + name + '=([^&]*)(&|$)';
@@ -78,7 +78,7 @@
         methods: {},
         created: function created() {
             var _this = this;
-            this.$http.get('http://139.199.39.76:8099/p?p=/html/vodplay/' + getQueryString("id") + '.json').then(function (res) {
+            this.$http.get('http://localhost:8099/p?p=/html/vodplay/' + getQueryString("id") + '.json').then(function (res) {
                 var vurl = JSON.parse(res.body.url);
                 _this.playerOptions.sources[0].src = vurl[1][0];
                 _this.playerOptions.poster = res.body.s_pic;
