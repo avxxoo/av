@@ -20,7 +20,7 @@
                 <img :src="item.Pic" class="image" style="width: 100%;height: 50px;">
             </el-card>
         </el-col>
-        <br style="margin-bottom: 1em">
+        <div style="height: 10px"></div>
         <el-col :xs="12" :sm="8" :md="6" :lg="4" :xl="3" v-for="(item, index) in list.list" :key="index">
             <el-card @click.native="jump(item.s_id)">
                 <img :src="item.s_pic" class="image" style="width: 100%;height: 100%;">
