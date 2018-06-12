@@ -20,22 +20,24 @@
 
 <body>
 <div id="vueapp">
-    <el-row :gutter="2" style="margin-top: 3em;margin-bottom: 1em">
-        <el-col :span="24" v-for="(item, index) in adlist1.list" :key="index">
-            <el-card @click.native="jumpAd(item.Url)" :body-style="{padding: '0px'}">
-                <img :src="item.Pic" class="image" style="width: 100%;height: 50px;">
-            </el-card>
-        </el-col>
-    </el-row>
-    <video-player v-show="ok" v-if="done" class="vjs-custom-skin" ref="videoPlayer" :options="playerOptions" :playsinline="false">
-    </video-player>
-    <el-row :gutter="2" style="margin-top: 3em;margin-bottom: 1em">
-        <el-col :span="24" v-for="(item, index) in adlist2.list" :key="index">
-            <el-card @click.native="jumpAd(item.Url)" :body-style="{padding: '0px'}">
-                <img :src="item.Pic" class="image" style="width: 100%;height: 50px;">
-            </el-card>
-        </el-col>
-    </el-row>
+    <el-container id="app" direction="vertical">
+        <el-row :gutter="2" style="margin-bottom: 1em">
+            <el-col :span="24" v-for="(item, index) in adlist1.list" :key="index">
+                <el-card @click.native="jumpAd(item.Url)" :body-style="{padding: '0px'}">
+                    <img :src="item.Pic" class="image" style="width: 100%;height: 50px;">
+                </el-card>
+            </el-col>
+        </el-row>
+        <video-player v-show="ok" v-if="done" class="vjs-custom-skin" ref="videoPlayer" :options="playerOptions" :playsinline="false">
+        </video-player>
+        <el-row :gutter="2">
+            <el-col :span="24" v-for="(item, index) in adlist2.list" :key="index">
+                <el-card @click.native="jumpAd(item.Url)" :body-style="{padding: '0px'}">
+                    <img :src="item.Pic" class="image" style="width: 100%;height: 50px;">
+                </el-card>
+            </el-col>
+        </el-row>
+    </el-container>
 </div>
 </body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
