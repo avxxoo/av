@@ -1,10 +1,13 @@
 CACHE MANIFEST
-css/mint-ui.css
-css/video-js.css
-css/vue-video-player.css
-js/element-ui.js
-js/mint-ui.js
-js/video.min.js
-js/vue-resource.js
-js/vue-video-player.js
-js/vue.js
+
+CACHE:
+  css/mint-ui.css
+  css/video-js.css
+  css/vue-video-player.css
+  js/element-ui.js
+  js/mint-ui.js
+  js/video.min.js
+  js/vue-resource.js
+  js/vue-video-player.js
+  js/vue.js
+  
