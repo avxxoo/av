@@ -19,7 +19,7 @@
             请多多分享，用的人越多，速度越快。
         </el-col>
     </el-row>
-    <el-row v-show="ok" :gutter="2" style="margin-top: 3em;margin-bottom: 1em">
+    <el-row v-show="ok" :gutter="2" style="margin-top: 0em;margin-bottom: 1em">
         <el-col :span="24" v-for="(item, index) in adlist.list" :key="index">
             <el-card @click.native="jumpAd(item.Url)" :body-style="{padding: '0px'}">
                 <img :src="item.Pic" class="image" style="width: 100%;height: 50px;">
