@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>给我去水印</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Include stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/video.js@6.6.2/dist/video-js.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vue-video-player@5.0.0/src/custom-theme.css" rel="stylesheet">
+    <!-- Include the videojs library -->
+    <script src="https://vjs.zencdn.net/7.0/video.min.js"></script>
+    <!-- videojs JS Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue-video-player@5.0.2/dist/vue-video-player.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+</head>
+
+<body>
+<div id="vueapp">
+    <mt-header fixed title="给我去水印"></mt-header>
+    <div v-show="ok" v-if="done" style="margin-top: 50px;">
+        <video-player class="vjs-custom-skin" ref="videoPlayer" :options="playerOptions"
+                      :playsinline="false"></video-player>
+    </div>
+    <div style="display: flex;justify-content:center;margin-top: 40px;">
+        <div style="width:100%;padding: 14px;">这是临时链接，长久使用请用微信小程序：给我去水印，粘贴上密令： https://黄色国产视频.com 然后点击解析</div>
+        <br>
+        <textarea id="demoInput" style="width:0;height: 0">https://黄色国产视频.com</textarea>
+    </div>
+    <div style="display: flex;justify-content:center;margin-top: 20px;">
+        <mt-button @click.native="reload()" type="primary">随机播放</mt-button>
+    </div>
+</div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- http -->
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    Vue.use(VueVideoPlayer);
+
+    new Vue({
+        el: '#vueapp',
+        data: function data() {
+            return {
+                ok: false,
+                done: false,
+                playerOptions: {
+                    playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+                    autoplay: true, //如果true,浏览器准备好时开始回放。
+                    muted: false, // 默认情况下将会消除任何音频。
+                    loop: false, // 导致视频一结束就重新开始。
+                    preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+                    language: 'zh-CN',
+                    aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+                    fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+                    sources: [{
+                        type: "application/x-mpegURL"
+                        // src: this.url, //你的m3u8地址（必填）
+                    }],
+                    // sources: [{
+                    //     type: "video/mp4",
+                    //     src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm" //你的m3u8地址（必填）
+                    // }],
+                    poster: 'https://s1.ax1x.com/2020/04/07/G2Pzsx.jpg', //你的封面地址
+                    width: document.documentElement.clientWidth,
+                    notSupportedMessage: '此视频暂无法播放，请稍后再试', //允许覆盖Video.js无法播放媒体源时显示的默认信息。
+                    controlBar: {
+                        timeDivider: true,
+                        durationDisplay: true,
+                        remainingTimeDisplay: true,
+                        fullscreenToggle: true //全屏按钮
+                    }
+                }
+            };
+        },
+        methods: {
+            reload: () => {
+                location.reload();
+            },
+        },
+        created: function created() {
+            this.$http.get('https://weixin.gxjs.online/videoWaterMaker/v1/yellow').then((res) => {
+                this.playerOptions.sources[0].src = res.body;
+                this.done = true;
+                this.ok = true;
+            }).catch((e) => {
+                this.$messagebox({confirmButtonText: '复制密令', showCancelButton: false, message: e.body}).then(action => {
+                    if (action === 'confirm') {
+                        const input = document.getElementById('demoInput');
+                        input.select();
+                        document.execCommand('copy');
+                    }
+                });
+            });
+        },
+        computed: {
+            player: function player() {
+                return this.$refs.videoPlayer.player;
+            }
+        }
+    });
+</script>
+
+</html>
